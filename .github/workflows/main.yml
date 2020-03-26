@@ -42,19 +42,19 @@ jobs:
                 +tcp_cubic       \
                 +morosound       \
                 +boeffla_wl_blocker
-    - name: Kernel Build
-      run: ./build :build
-    - name: Create boot.img
-      run: ./build :mkimg
     - name: Show information about build
       run: cat build.info
-    - name: Upload Kernel
-      uses: actions/upload-artifact@v1
-      with:
-        name: CruelKernel-${{ matrix.model }}
-        path: boot.img
     - name: Upload Kernel Info
       uses: actions/upload-artifact@v1
       with:
         name: ConfigurationInfo-${{ matrix.model }}
         path: build.info
+    - name: Kernel Build
+      run: ./build :build
+    - name: Create boot.img
+      run: ./build :mkimg
+    - name: Upload Kernel
+      uses: actions/upload-artifact@v1
+      with:
+        name: CruelKernel-${{ matrix.model }}
+        path: boot.img
